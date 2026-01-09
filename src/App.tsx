@@ -9,8 +9,13 @@ import AuthLayer from './contexts/AuthLayer'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Setup from './pages/Setup/Setup'
 import Account from './pages/Account/Account'
+import Logs from './pages/Logs/Logs'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(()=>{
+    document.title = "Spotify Payment Tracker"
+  },[])
 
   return (
     <>
@@ -23,6 +28,7 @@ function App() {
 
         <Route element={<AuthLayer/>}>
           <Route path='/setup' element={<Setup/>} />
+          <Route path='/logs' element={<Logs/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/account' element={<Account/>} />
         </Route>

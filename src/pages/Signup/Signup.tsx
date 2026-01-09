@@ -64,7 +64,11 @@ function Signup() {
     })
     if (error) console.error("Error inserting to account_setup table: ", error);
 
-    navigate("/setup")
+    navigate("/setup",{
+      state:{
+        activity: "add"
+      }
+    })
 
     setError({
       owner: "",

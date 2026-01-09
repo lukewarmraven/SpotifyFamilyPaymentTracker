@@ -7,6 +7,9 @@ import { fetchAccountData } from "../../contexts/fetchData";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Setup() {
+  useEffect(()=>{
+    document.title = "Account Setup"
+  },[])
   const {user} = useUser()
   const [name,setName] = useState("") 
   const [lastpaid,setLastPaid] = useState("")
@@ -30,7 +33,7 @@ function Setup() {
       setAccsetup(accsetup)
       const current = accsetupdata?.find((acc:any) => acc.email === user?.email)
 
-      if (activity === "edit") {
+      if (activity === "edit" && current.members) {
         setEntries(current.members.map((m: any)=> ({
           name: m.name,
           lastPaid: new Date(m.lastPaid)
@@ -140,7 +143,8 @@ function Setup() {
                     )}
                   </div>
                   <div>
-                    <button disabled={maxReached} type="button" onClick={addField}>{entries.length >= MAX_MEMBERS ? "Maximum" : "Add"}</button>
+                    <button disabled={maxReached} type="button" onClick={addField}>{entries.length >= MAX_MEMBERS ? "Maxed" : "Add"}</button> 
+                    {maxReached && ("Spotify only allows 6 members maximum per family plan!")}
                   </div>
                   <br />
 
@@ -176,7 +180,7 @@ function Setup() {
                     error.members
                   )}
                   <div>
-                    <button type="submit">Setup</button>
+                    <button type="submit">{activity === "edit" ? "Save" : "Setup"}</button>
                   </div>
                 </form>
               </div>   

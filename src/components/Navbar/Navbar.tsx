@@ -24,6 +24,9 @@ function Navbar(){
                                 <Link to="/dashboard">Dashboard</Link>
                             </div>
                             <div>
+                                <Link to="/logs">Logs</Link>
+                            </div>
+                            <div>
                                 <a onClick={logoutUser} href="/login">Logout</a>
                             </div>
                         </>
