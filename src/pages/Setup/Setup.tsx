@@ -18,10 +18,12 @@ function Setup() {
     name: "",
     lastpaid: "",
     members: "",
-    billing: ""
+    billing: "",
+    price: ""
   })
   const [accsetup,setAccsetup] = useState<any>([])
   const [billing,setBilling] = useState("")
+  const [price,setPrice] = useState(0)
   const location = useLocation()
   const {activity} = location.state
   const [entriesErrors, setEntriesErrors] = useState<{ name?: string; lastPaid?: string }[]>([])
@@ -41,6 +43,7 @@ function Setup() {
           lastPaid: new Date(m.lastPaid)
         })))
         setBilling(current?.billing_date)
+        setPrice(current?.price)
 
         // console.log(current);
       }
@@ -53,7 +56,8 @@ function Setup() {
       name: "",
       lastpaid: "",
       members: "",
-      billing: ""
+      billing: "",
+      price: ""
     }
     if(!name) newError.name = "Required" 
     if(!lastpaid) newError.lastpaid = "Required" 
@@ -78,7 +82,8 @@ function Setup() {
     .from("account_setup")
     .update({
       members: entries,
-      billing_date: billing
+      billing_date: billing,
+      price: price
     })
     .eq("email",user?.email)
 
@@ -106,6 +111,10 @@ function Setup() {
     let hasError = false
     if(!billing) {
       setError(prev=>({...prev, billing: "Required"}))
+      return false
+    }
+    if(!price) {
+      setError(prev=>({...prev, price: "Required"}))
       return false
     }
     const newEntriesErrors = entries.map((entry) => {
@@ -148,6 +157,15 @@ function Setup() {
                       error.billing
                     )
                   }
+                </div>
+                 <div>
+                  <label htmlFor="price">Monthly Billed Price: </label>
+                  <input type="number" name="price" min={0} id="price" value={price} onChange={(e) => (
+                    setPrice(parseInt(e.target.value))
+                  )}/> pesos
+                  {error.price && (
+                    error.price
+                  )}
                 </div>
                 <div>Enter your Spotify Family plan members below:</div>
                   <div>
@@ -217,12 +235,22 @@ function Setup() {
               
               <form action={handleSubmit}>
                 <div>
-                  <label htmlFor="billing">Start of Monthly Billing:</label>
+                  <label htmlFor="billing">Start of Monthly Billing: </label>
                   <input type="date" max={new Date().toISOString().split("T")[0]} value={billing} onChange={(e)=>{
                     setBilling(e.target.value)
                   }}/>
                   {error.billing && (
                     error.billing
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="price">Monthly Billed Price: </label>
+                  <input type="number" name="price" min={0} id="price" value={price} onChange={(e) => (
+                    setPrice(parseInt(e.target.value))
+                  )}
+                    /> pesos
+                  {error.price && (
+                    error.price
                   )}
                 </div>
                 <div>Enter your Spotify Family plan members below:</div>
