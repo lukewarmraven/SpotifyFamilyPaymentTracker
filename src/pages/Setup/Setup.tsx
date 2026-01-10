@@ -17,9 +17,11 @@ function Setup() {
   const [error,setError] = useState({
     name: "",
     lastpaid: "",
-    members: ""
+    members: "",
+    billing: ""
   })
   const [accsetup,setAccsetup] = useState<any>([])
+  const [billing,setBilling] = useState("")
   const location = useLocation()
   const {activity} = location.state
   const [entriesErrors, setEntriesErrors] = useState<{ name?: string; lastPaid?: string }[]>([])
@@ -30,14 +32,15 @@ function Setup() {
   useEffect(()=>{
     const fetchAccSetup = async () => {
       const accsetupdata = await fetchAccountData()
-      setAccsetup(accsetup)
       const current = accsetupdata?.find((acc:any) => acc.email === user?.email)
+      setAccsetup(current)
 
       if (activity === "edit" && current.members) {
         setEntries(current.members.map((m: any)=> ({
           name: m.name,
           lastPaid: new Date(m.lastPaid)
         })))
+        setBilling(current?.billing_date)
 
         // console.log(current);
       }
@@ -49,10 +52,12 @@ function Setup() {
     const newError = {
       name: "",
       lastpaid: "",
-      members: ""
+      members: "",
+      billing: ""
     }
     if(!name) newError.name = "Required" 
     if(!lastpaid) newError.lastpaid = "Required" 
+    // if(!billing) newError.billing = "Required"
 
     setError(newError)
 
@@ -63,14 +68,17 @@ function Setup() {
 
   const handleSubmit = async () => {
     if (!validateEntries()) return
-
-    console.log("Setting up...");
-    if(entries.length === 0) setError(prev=> ({...prev, members: "Add at least one field..."}))
+    if(entries.length === 0) {
+      setError(prev=> ({...prev, members: "Add at least one field..."}))
+      return
+    }
+      console.log("Setting up...");
 
     const {error} = await supabase
     .from("account_setup")
     .update({
-      members: entries
+      members: entries,
+      billing_date: billing
     })
     .eq("email",user?.email)
 
@@ -96,6 +104,10 @@ function Setup() {
 
   const validateEntries = (): boolean => {
     let hasError = false
+    if(!billing) {
+      setError(prev=>({...prev, billing: "Required"}))
+      return false
+    }
     const newEntriesErrors = entries.map((entry) => {
       const entryError: { name?: string; lastPaid?: string } = {}
       if (!entry.name.trim()) {
@@ -113,17 +125,31 @@ function Setup() {
     return !hasError
   }
 
+  // console.log(accsetup);
+  // console.log(entries.length);
+  // console.log(Boolean(accsetup?.billing_date));
   return (
     <div>
         <div>Setup Page</div>
         {
-          activity === "edit" ? (
+          (activity === "edit" && (entries.length > 0 || accsetup?.billing_date)) ? (
             <div>
-              Edit your Spotify Family Members
+              Edit your Spotify Family Information
 
               <div>
-                <div>Enter your Spotify Family plan members below:</div>
                 <form action={handleSubmit}>
+                <div>
+                  <label htmlFor="billing">Start of Monthly Billing:</label>
+                  <input type="date" value={billing} max={new Date().toISOString().split("T")[0]} onChange={(e)=>{
+                    setBilling(e.target.value)
+                  }}/>
+                  {
+                    error.billing && (
+                      error.billing
+                    )
+                  }
+                </div>
+                <div>Enter your Spotify Family plan members below:</div>
                   <div>
                     <label htmlFor="name">Name:</label>
                     <input type="text" id="name" value={name} onChange={(e)=>{
@@ -135,7 +161,7 @@ function Setup() {
                   </div>
                   <div>
                     <label htmlFor="lastpaid">Last Paid Date:</label>
-                    <input type="date" id="lastpaid" value={lastpaid} onChange={(e)=>{
+                    <input type="date" id="lastpaid" max={new Date().toISOString().split("T")[0]} value={lastpaid} onChange={(e)=>{
                       setLastPaid(e.target.value)
                     }}/>
                     {error.lastpaid && (
@@ -162,7 +188,7 @@ function Setup() {
                         </div>
                         <div>
                           <label htmlFor="lastpaid">Last Paid Date:</label>
-                          <input type="date" id="lastpaid" value={m.lastPaid.toISOString().split("T")[0]} onChange={(e)=>{
+                          <input type="date" id="lastpaid" max={new Date().toISOString().split("T")[0]} value={m.lastPaid.toISOString().split("T")[0]} onChange={(e)=>{
                             const newEntries = [...entries]
                             newEntries[i].lastPaid = new Date(e.target.value)
                             setEntries(newEntries)
@@ -180,7 +206,7 @@ function Setup() {
                     error.members
                   )}
                   <div>
-                    <button type="submit">{activity === "edit" ? "Save" : "Setup"}</button>
+                    <button type="submit">Save</button>
                   </div>
                 </form>
               </div>   
@@ -188,8 +214,18 @@ function Setup() {
           ) : (
             //ANCHOR - CREATING AND NOT EDITING ===========================
             <div>
-              <div>Enter your Spotify Family plan members below:</div>
+              
               <form action={handleSubmit}>
+                <div>
+                  <label htmlFor="billing">Start of Monthly Billing:</label>
+                  <input type="date" max={new Date().toISOString().split("T")[0]} value={billing} onChange={(e)=>{
+                    setBilling(e.target.value)
+                  }}/>
+                  {error.billing && (
+                    error.billing
+                  )}
+                </div>
+                <div>Enter your Spotify Family plan members below:</div>
                 <div>
                   <label htmlFor="name">Name:</label>
                   <input type="text" id="name" value={name} onChange={(e)=>{
@@ -201,7 +237,7 @@ function Setup() {
                 </div>
                 <div>
                   <label htmlFor="lastpaid">Last Paid Date:</label>
-                  <input type="date" id="lastpaid" value={lastpaid} onChange={(e)=>{
+                  <input type="date" id="lastpaid" max={new Date().toISOString().split("T")[0]} value={lastpaid} onChange={(e)=>{
                     setLastPaid(e.target.value)
                   }}/>
                   {error.lastpaid && (

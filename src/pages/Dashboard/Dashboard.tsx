@@ -44,6 +44,9 @@ function Dashboard() {
                       
                       {accsetup.members?.length > 0 && (
                         <div>
+                          <div>
+                            Monthly Billing Date: {formatDate(accsetup.billing_date)}
+                          </div>
                           Family Members:
                           {accsetup.members.map((v: any, ix: number) => (
                             <div key={ix}>
@@ -59,7 +62,7 @@ function Dashboard() {
                   
                 }
                 <div>
-                  <button type="button" onClick={handleNext}>{accsetup?.members?.length > 0 ? "Edit": "Add"} Members</button>
+                  <button type="button" onClick={handleNext}>{accsetup?.members?.length > 0 ? "Edit": "Add"} Family Information</button>
                 </div>
               </div>
             ) : (
