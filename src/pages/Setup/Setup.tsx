@@ -24,6 +24,7 @@ function Setup() {
   const [accsetup,setAccsetup] = useState<any>([])
   const [billing,setBilling] = useState("")
   const [price,setPrice] = useState(0)
+  const [origprice,setOrigPrice] = useState(0)
   const location = useLocation()
   const {activity} = location.state
   const [entriesErrors, setEntriesErrors] = useState<{ name?: string; lastPaid?: string }[]>([])
@@ -44,6 +45,7 @@ function Setup() {
         })))
         setBilling(current?.billing_date)
         setPrice(current?.price)
+        setOrigPrice(current?.price)
 
         // console.log(current);
       }
@@ -83,11 +85,12 @@ function Setup() {
     .update({
       members: entries,
       billing_date: billing,
-      price: price
+      price: price,
+      price_changedate: origprice !== price ? new Date() : undefined
     })
     .eq("email",user?.email)
 
-    if(error) console.error("Error in updating members in account_setup table");
+    if(error) {console.error("Error in updating members in account_setup table"); return}
 
     navigate("/dashboard")
   }

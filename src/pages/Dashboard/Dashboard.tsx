@@ -4,6 +4,7 @@ import { fetchAccountData, fetchLogs } from "../../contexts/fetchData"
 import { formatDate, formatName, formatOrdinal } from "../../contexts/useFormat"
 import { useUser } from "../../contexts/useUser"
 import { supabase } from "../../client/supabaseClient"
+import { getMonthDiff } from "../../contexts/getFunction"
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -15,7 +16,9 @@ function Dashboard() {
     const fetchAccSetup = async () => {
       const accsetupdata = await fetchAccountData()
       const current = accsetupdata?.find(v=>v.email === user?.email)
+      // console.log(current);
       setAccsetup(current)
+      
     }
     fetchAccSetup()
 
@@ -30,7 +33,8 @@ function Dashboard() {
   },[])
   
   const deleteLog = async (i:number) => {
-    setLogs(prev=>prev.filter((v:any)=>v.id === i))
+    
+    setLogs(prev=>prev.filter((v:any)=>v.id !== i))
     const {error} = await supabase
     .from('logs')
     .delete()
@@ -60,9 +64,15 @@ function Dashboard() {
                 {
                   <div>
                     <br />
-                    <div> Spotify Family Owner: {accsetup.owner} </div>
+                    <div>{accsetup.owner}'s Spotify Family </div>
                     <div>
-                      bills ₱{parseFloat(accsetup.price).toFixed(2)} every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month                          
+                      bills ₱{parseFloat(accsetup.price).toFixed(2)} every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
+                        <span>
+                          (₱{Math.round(accsetup.price / accsetup?.members?.length)} per member as of {formatDate(new Date(accsetup.price_changedate))})
+                        </span>
+                        )}  
+                      <div>Note: Price per member is rounded up.</div>                       
+
                     </div>
                     <div>
                       <button type="button" onClick={handleNext}>{accsetup?.members?.length > 0 ? "Edit": "Add"} Family Information</button>
@@ -89,25 +99,32 @@ function Dashboard() {
                               <th>Amount</th>
                               <th>Payment Date</th>
                               <th>Paid Until</th>
+                              <th>Months Paid</th>
                               <th>Method</th>
                               <th></th>
                             </tr>
                           </thead>
 
                           <tbody>
-                            {
-                              logs.length > 0 && 
-                              (logs.map((v:any,i:number) => (
-                                <tr key={i}>
+                            {logs.length > 0 ? (
+                              logs.map((v: any) => (
+                                <tr key={v.id}>
                                   <td>{formatName(v.member)}</td>
                                   <td>{v.amount}</td>
                                   <td>{formatDate(v.paymentDate)}</td>
                                   <td>{formatDate(v.paid_until)}</td>
+                                  <td>{getMonthDiff(new Date(v.paymentDate),new Date(v.paid_until))}</td>
                                   <td>{v.method}</td>
-                                  <td><button type="button" onClick={()=> deleteLog(v.id)}>Delete</button></td>
+                                  <td>
+                                    <button type="button" onClick={() => deleteLog(v.id)}>Delete</button>
+                                  </td>
                                 </tr>
-                              )))
-                            }
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan={6} style={{ textAlign: "center" }}>No logs fetched! Add a new one in the logs tab!</td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
                         
