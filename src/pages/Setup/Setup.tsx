@@ -182,9 +182,17 @@ function Setup() {
                         }
                         </span>
                       </div>
-                      <input type="number" name="price" min={0} id="price" value={price} onChange={(e) => (
-                        setPrice(parseInt(e.target.value))
-                      )}/> pesos
+                      <div className="set-input-currency">
+                        <span className="currency-symbol">₱</span>
+                        <input
+                          type="number"
+                          name="price"
+                          min={0}
+                          id="price"
+                          value={price}
+                          onChange={(e) => setPrice(parseInt(e.target.value))}
+                        />
+                      </div>
                     </div>
                   
                     <div>Enter your Spotify Family plan members below:</div>
@@ -220,7 +228,7 @@ function Setup() {
                   </div>
 
                   <div className="set-max-btn-div">
-                    <button className="set-btn set-max-btn" disabled={maxReached} type="button" onClick={addField}>{entries.length >= MAX_MEMBERS ? "Maxed" : "Add"}</button> 
+                    <button className={entries.length === 6 ? "set-disabled-btn" : "set-btn set-max-btn"} disabled={maxReached} type="button" onClick={addField}>{entries.length >= MAX_MEMBERS ? "Maxed" : "Add"}</button> 
                     <span className="set-submsg">
                       {maxReached && ("Spotify only allows 6 members maximum per family plan!")}
                     </span>
@@ -284,69 +292,100 @@ function Setup() {
             </div>
           ) : (
             //ANCHOR - CREATING AND NOT EDITING ===========================
-            <div>
-              
+            <div className="set-form-con">
+              <div className="set-create-title">Setup your Spotify Family members here...</div>
               <form action={handleSubmit}>
-                <div>
-                  <label htmlFor="billing">Start of Monthly Billing: </label>
-                  <input ref={billingref} type="date" max={new Date().toISOString().split("T")[0]} value={billing} onChange={(e)=>{
-                    setBilling(e.target.value)
-                  }} onFocus={()=>billingref.current?.showPicker?.()}/>
-                  {error.billing && (
-                    error.billing
-                  )}
-                </div>
-                <div>
-                  <label htmlFor="price">Monthly Billed Price: </label>
-                  <input type="number" name="price" min={0} id="price" value={price} onChange={(e) => (
-                    setPrice(parseInt(e.target.value))
-                  )}
-                    /> pesos
-                  {error.price && (
-                    error.price
-                  )}
-                </div>
-                <div>Enter your Spotify Family plan members below:</div>
-                <div>
-                  <label htmlFor="name">Name:</label>
-                  <input type="text" id="name" value={name} onChange={(e)=>{
-                    setName(e.target.value)
-                  }}/>
-                  {error.name && (
-                    error.name
-                  )}
-                </div>
-                <div>
-                  <label htmlFor="lastpaid">Last Paid Date:</label>
-                  <input ref={lastpaidRef } type="date" id="lastpaid" max={new Date().toISOString().split("T")[0]} value={lastpaid} onChange={(e)=>{
-                    setLastPaid(e.target.value)
-                  }} onFocus={()=>lastpaidRef.current?.showPicker?.()}/>
-                  {error.lastpaid && (
-                    error.lastpaid
-                  )}
-                </div>
-                <div>
-                  <button className="set-btn" type="button" onClick={addField}>Add</button>
+                <div className="set-create-div">
+                  <div className="set-input-con">
+                    <div className="set-name-div">
+                    <label htmlFor="billing">Start of Monthly Billing: </label>
+                    <span>
+                      {error.billing && (
+                        error.billing
+                      )}
+                    </span>
+                    </div>
+                    <input ref={billingref} type="date" max={new Date().toISOString().split("T")[0]} value={billing} id="billing" onChange={(e)=>{
+                      setBilling(e.target.value)
+                    }} onFocus={()=>billingref.current?.showPicker?.()}/>
+                    
+                  </div>
+                  <div className="set-input-con">
+                    <div className="set-name-div">
+                    <label htmlFor="price">Monthly Billed Price: </label>
+                      <span>
+                        {error.price && (
+                      error.price
+                    )}
+                      </span>
+                    </div>
+                    <div className="set-input-currency">
+                      <span className="currency-symbol">₱</span>
+                      <input
+                        type="number"
+                        name="price"
+                        min={0}
+                        id="price"
+                        value={price}
+                        onChange={(e) => setPrice(parseInt(e.target.value))}
+                      />
+                    </div>
+                    
+                  </div>
+                  <div className="set-subtitle">Enter your Spotify Family plan members below:</div>
+                  <div className="set-input-con">
+                    <div className="set-name-div">
+                    <label htmlFor="name">Name:</label>
+                      <span>
+                        {error.name && (
+                          error.name
+                        )}
+                      </span>
+                    </div>
+                    <input type="text" id="name" value={name} onChange={(e)=>{
+                      setName(e.target.value)
+                    }}/>
+                    
+                  </div>
+                  <div className="set-input-con">
+                    <div className="set-name-div">
+                    <label htmlFor="lastpaid">Last Paid Date:</label>
+                      <span>
+                        {error.lastpaid && (
+                        error.lastpaid
+                      )}
+                      </span>
+                    </div>
+                    <input ref={lastpaidRef } type="date" id="lastpaid" max={new Date().toISOString().split("T")[0]} value={lastpaid} onChange={(e)=>{
+                      setLastPaid(e.target.value)
+                    }} onFocus={()=>lastpaidRef.current?.showPicker?.()}/>
+                    
+                  </div>
+                  <div>
+                    <button className={entries.length === 6 ? "set-disabled-btn" : "set-btn"} type="button" onClick={addField} disabled={entries.length === 6}>{entries.length === 6 ? "Maxed" :"Add"}</button>
+                  </div>
                 </div>
 
-                {
-                  entries.map((m,i)=>(
-                    <div key={i}>
-                      <ul>
-                        <li>Name: {formatName(m.name)}</li>
-                        <li> Last Paid: {m.lastPaid.toDateString()}</li>
-                        <button className="set-btn remove-btn" type="button" onClick={()=>(
-                          setEntries(prev=>prev.filter((_,index)=>index !== i))
-                        )}>Remove</button>
-                      </ul>
-                    </div>
-                  ))
-                }
-                <span className="set-err">  
-                  {error.members && (
-                    error.members
-                  )}
-                </span>
+                <div className="set-added-con">
+                  {
+                    entries.map((m,i)=>(
+                      <div className="set-added-inner entries-card" key={i}>
+                        <ul>
+                          <li>Name: {formatName(m.name)}</li>
+                          <li> Last Paid: {m.lastPaid.toDateString()}</li>
+                          <button className="set-btn remove-btn" type="button" onClick={()=>(
+                            setEntries(prev=>prev.filter((_,index)=>index !== i))
+                          )}>Remove</button>
+                        </ul>
+                      </div>
+                    ))
+                  }
+                  <span className="set-err">  
+                    {error.members && (
+                      error.members
+                    )}
+                  </span>
+                </div>
                 <div>
                   <button className="set-btn" type="submit">Setup</button>
                 </div>

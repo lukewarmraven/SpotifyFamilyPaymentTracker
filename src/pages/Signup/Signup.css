@@ -34,7 +34,7 @@
     color: var(--font-white);
     font-family: var(--main-font);
 
-    background-color: var(--font-black);
+    background-color: var(--font-black) ;
     border: 0;
     border-bottom: 0.1em solid var(--font-white);
 
@@ -45,9 +45,9 @@
 
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-.signup-main .signup-form-con input:not(:placeholder-shown) {
+/* .signup-main .signup-form-con input:not(:placeholder-shown) {
     background-color: var(--font-darkblack);
-}
+} */
 .signup-main .signup-form-con input:focus{
     background-color: var(--font-darkblack);
     border-color: var(--font-darkgreen);

@@ -98,7 +98,21 @@
 
     font-size: 0.7em;
     font-family: var(--main-font);
+}
+.set-disabled-btn{
+   padding: 1em 2em;
+   margin: 1em;
+    border-radius: 9999px;
+    background-color: var(--font-lightgrey);
+    color: black;
+    border: none;
+    cursor: pointer;
 
+    font-size: 0.7em;
+    font-family: var(--main-font);
+}
+.set-disabled-btn:hover{
+   background-color: var(--font-darkgrey);
 }
 .set-btn:hover{
     background-color: var(--font-lightgreen);
@@ -139,13 +153,77 @@
 .entries-card{
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
-
-    padding: 1em;
-    border-radius: 0.75em;
-    background-color: var(--font-darkblack);
+    gap: 0.75em; /* spacing between items */
+    
+    padding: 1.5em; /* inner space */
+    border-radius: 1em; /* rounded corners */
+    background-color: var(--font-darkblack); /* card bg */
+    
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* optional subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.entries-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 .set-submsg{
     font-size: 1em !important;
     color: var(--font-lightgreen);
+}
+.set-added-con{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 1.5em; /* space between cards */
+    width: 100%;
+    justify-items: center; /* center cards in each column */
+    align-items: start; 
+}
+.set-added-inner ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+     padding: 0;
+    margin: 0;
+}
+.set-added-inner ul button{
+    margin-top: 1em;
+}
+.set-added-inner ul li{
+    list-style: none;
+}
+.set-create-div div:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.set-create-title{
+    font-size: 2vw;
+    padding: 2em;
+}
+.set-subtitle{
+    text-align: center;
+    padding: 2em 0;
+    font-weight: var(--font-heavy);
+}
+
+.set-input-currency {
+    position: relative;
+    width: 100%;
+}
+
+.set-input-currency input {
+    width: 100%;
+    padding-left: 2em; /* space for peso symbol */
+    box-sizing: border-box; /* keeps width consistent */
+}
+
+.set-input-currency .currency-symbol {
+    position: absolute;
+    left: 0.5em; /* distance from left edge */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--font-white);
+    font-size: 0.8em; /* match other inputs */
+    pointer-events: none; /* clicks go to input, not span */
 }
