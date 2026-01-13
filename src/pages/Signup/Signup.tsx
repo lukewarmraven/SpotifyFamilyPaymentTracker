@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { supabase } from "../../client/supabaseClient"
 import { useNavigate } from "react-router-dom"
+import "./Signup.css"
 
 function Signup() {
   const [owner,setOwner] = useState("")
@@ -78,45 +79,48 @@ function Signup() {
   }
   
   return (
-    <div>
-      <div>Signup Page</div>
+    <div className="signup-main">
+      <div className="signup-title">Signup Page</div>
       <div>
         <form action={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" value={owner} onChange={
-              (e) => (
-                setOwner(e.target.value)
-              )
-            }/>
-            {error.owner && (
-              error.owner
-            )}
+          <div className="signup-form-con">
+            <div>
+              <label className="signup-label" htmlFor="username">Username:</label>
+              <input type="text" id="username" value={owner} onChange={
+                (e) => (
+                  setOwner(e.target.value)
+                )
+              }/>
+              {error.owner && (
+                error.owner
+              )}
+            </div>
+            
+            <div>
+              <label className="signup-label" htmlFor="email">Email:</label>
+              <input type="email" id="email" value={email} onChange={
+                (e) => (
+                  setEmail(e.target.value)
+                )
+              }/>
+              {error.email && (
+                error.email
+              )}
+            </div>
+          
+            <div>
+              <label className="signup-label" htmlFor="password">Password:</label>
+              <input type="password" id="password" value={pass} onChange={
+                (e) => (
+                  setPass(e.target.value)
+                )
+              }/>
+              {error.pass && (
+                error.pass
+              )}
+            </div>
           </div>
           
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" value={email} onChange={
-              (e) => (
-                setEmail(e.target.value)
-              )
-            }/>
-            {error.email && (
-              error.email
-            )}
-          </div>
-          
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" value={pass} onChange={
-              (e) => (
-                setPass(e.target.value)
-              )
-            }/>
-            {error.pass && (
-              error.pass
-            )}
-          </div>
 
           <button type="submit">Sign Up</button>
         </form>

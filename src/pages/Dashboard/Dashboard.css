@@ -1,0 +1,5 @@
+.dash-main {
+    color: var(--font-white);
+    font-family: var(--main-font);
+    font-weight: 200;
+}

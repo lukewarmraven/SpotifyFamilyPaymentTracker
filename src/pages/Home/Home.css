@@ -1,0 +1,12 @@
+.home-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    
+}
+.home-main-title {
+    color: var(--font-white);
+    font-family: var(--main-font);
+    text-align: center;
+}

@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <div>Spotify Family Payment Tracker</div>
+      {/* <div>Spotify Family Payment Tracker</div> */}
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>} />

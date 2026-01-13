@@ -1,0 +1,87 @@
+.signup-main{
+    font-family: var(--main-font);
+    color: var(--font-white);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 80vh;
+}
+.signup-title{
+    font-weight: 600;
+    align-items: center;
+}
+.signup-main div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-main div form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.signup-main .signup-form-con input{
+    width: 100%;
+    padding: 1em 2em;
+
+    color: var(--font-white);
+    font-family: var(--main-font);
+
+    background-color: var(--font-black);
+    border: 0;
+    border-bottom: 0.1em solid var(--font-white);
+
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.signup-main .signup-form-con input:not(:placeholder-shown) {
+    background-color: var(--font-darkblack);
+}
+.signup-main .signup-form-con input:focus{
+    background-color: var(--font-darkblack);
+    border-color: var(--font-darkgreen);
+    outline: none;
+    box-shadow: none;
+}
+.signup-main .signup-form-con input:-webkit-autofill,
+.signup-main .signup-form-con input:-webkit-autofill:hover,
+.signup-main .signup-form-con input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--font-darkblack) inset !important;
+    -webkit-text-fill-color: var(--font-white) !important;
+}
+.signup-main .signup-form-con div{
+    margin: 1em 0em;
+}
+.signup-main .signup-form-con {
+    max-width: 30rem;     /* limits width on large screens */
+}
+.signup-label {
+    display: block;
+    margin: 0.5em 0em;
+
+    font-weight: 200;
+}
+
+.signup-main form button {
+    padding: 1em 2em;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: var(--font-white);
+}
+.signup-main form button:hover {
+    background-color: var(--font-lightgrey);
+}

@@ -1,0 +1,37 @@
+.main{
+    display: flex;           /* Makes children align in a row */
+    gap: 0.5em;               /* Space between links */
+    align-items: center;     /* Vertically center the links if navbar has height */
+    padding: 0em 1em;
+    justify-content: flex-start;
+
+    font-family: var(--main-font);
+}
+
+.main > div {
+    display: flex;           /* Makes children align in a row */
+    gap: 0.5em;               /* Space between links */
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+.nav-button{
+    text-decoration: none;
+    color: var(--font-white);
+    font-weight: 200;
+    font-size: var(--main-size);
+    padding: 1em;
+
+    align-items: center;
+    border-radius: 9999px;
+}
+.nav-logo{
+    max-width: clamp(30px,5vw,50px);
+    align-items: center;
+}
+
+.nav-button:not(.no-hover):hover {
+    background-color: var(--font-darkgrey);
+}
+
+

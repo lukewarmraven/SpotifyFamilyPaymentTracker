@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { supabase } from "../../client/supabaseClient"
+import "./Login.css"
 
 function Login() {
   const [email,setEmail] = useState("")
@@ -45,33 +46,36 @@ function Login() {
   }
   
   return (
-    <div>
-      <div>Login Page</div>
+    <div className="login-main">
+      <div className="login-title">Login Page</div>
       <div>
         <form action={handleSubmit}>          
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" value={email} onChange={
-              (e) => (
-                setEmail(e.target.value)
-              )
-            }/>
-            {error.email && (
-              error.email
-            )}
+          <div className="login-form-con">
+            <div>
+              <label className="login-label" htmlFor="email">Email:</label>
+              <input placeholder="Enter your email..." type="email" id="email" value={email} onChange={
+                (e) => (
+                  setEmail(e.target.value)
+                )
+              }/>
+              {error.email && (
+                error.email
+              )}
+            </div>
+            
+            <div>
+              <label className="login-label" htmlFor="password">Password:</label>
+              <input placeholder="Enter your password..." type="password" id="password" value={pass} onChange={
+                (e) => (
+                  setPass(e.target.value)
+                )
+              }/>
+              {error.pass && (
+                error.pass
+              )}
+            </div>
           </div>
           
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" value={pass} onChange={
-              (e) => (
-                setPass(e.target.value)
-              )
-            }/>
-            {error.pass && (
-              error.pass
-            )}
-          </div>
 
           <button type="submit">Log in</button>
         </form>

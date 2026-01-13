@@ -5,6 +5,7 @@ import { formatDate, formatName, formatOrdinal } from "../../contexts/useFormat"
 import { useUser } from "../../contexts/useUser"
 import { supabase } from "../../client/supabaseClient"
 import { getMonthDiff } from "../../contexts/getFunction"
+import "./Dashboard.css"
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -55,8 +56,8 @@ function Dashboard() {
     navigate("/setup")
   }
   return (
-    <div>
-        <div>Dashboard Page</div>
+    <div className="dash-main">
+        <div className="dash-text">Dashboard Page</div>
         <div>
           {
             accsetup ? (

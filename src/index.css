@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
+
+:root{
+    --font-white: #ffffff;
+    --font-lightgreen: #1ed760;
+    --font-darkgreen: #1db954;
+    --font-lightgrey: #b3b3b3;
+    --font-darkgrey: #535353;
+    --font-black: #191414;
+    --font-darkblack: #202020;
+
+    /* font style here: */
+    --main-font: 'Google Sans Flex', 'Arial';
+    --main-size: clamp(12px,1.3vw,30px);
+}
+html,body {
+    background-color: var(--font-black);
+    height: 100%;
+    margin: 0;
+    /* color: #ffffff; */
+}
+
