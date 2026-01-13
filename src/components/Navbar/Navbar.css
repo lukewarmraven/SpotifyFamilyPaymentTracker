@@ -1,4 +1,10 @@
 .main{
+    position: fixed;      /* sticks the navbar to the viewport */
+    top: 0;               /* at the very top */
+    left: 0;
+    width: 100%;          /* full width */
+    z-index: 1000;        /* above all other content */
+    
     display: flex;           /* Makes children align in a row */
     gap: 0.5em;               /* Space between links */
     align-items: center;     /* Vertically center the links if navbar has height */
