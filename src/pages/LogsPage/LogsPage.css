@@ -31,7 +31,6 @@
 .logs-form-con form > div:last-child {
     display: flex;
     justify-content: center;
-    /* width: 100% is optional since divs are block by default */
 }
 
 .logs-input-con{
@@ -43,7 +42,7 @@
     padding: 1em;
 
     font-family: var(--main-font);
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: var(--font-white);
     
     background-color: var(--font-black);
@@ -58,14 +57,13 @@
 .logs-input-con label,
 .logs-input-con span{
     padding: 0.5em 0;
-    font-size: 0.8vw;
+    font-size: 0.9vw;
 }
 .logs-name-div{
     gap: 1em;
 }
 
 .logs-btn{
-    padding: 0.5em 1em;
     border-radius: 9999px;
     background-color: var(--font-white);
     color: black;
@@ -81,5 +79,14 @@
 
 .logs-err{
     color: red;
-
+}
+.set-submsg{
+    font-size: 0.7vw;
+}
+.logs-main .logs-form-con select:focus,
+.logs-main .logs-form-con input:focus{
+    background-color: var(--font-darkblack);
+    border-color: var(--font-darkgreen);
+    outline: none;
+    box-shadow: none;
 }

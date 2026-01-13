@@ -13,8 +13,8 @@
     /* font style here: */
     --main-font: 'Google Sans Flex', 'Arial';
     --main-size: clamp(12px,0.9vw,30px);
-    --font-light: 200
-    --font-heavy: 800
+    --font-light: 200;
+    --font-heavy: 800;
 }
 html,body {
     background-color: var(--font-black);

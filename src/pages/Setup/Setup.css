@@ -1,0 +1,151 @@
+.set-main{
+    color: var(--font-white);
+    font-family: var(--main-font);
+    font-size: 1vw;
+    font-weight: var(--font-light);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100;
+    padding: 0 0 5em 0;
+}
+.set-title{
+    font-weight: var(--font-light);
+    font-size: 2vw;
+
+    padding: 1em;
+}
+
+.set-edit-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* .set-form-con form div{
+    display: flex;
+
+} */
+.set-form-con form{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1em;
+}
+.set-form-con input{
+    padding: 1em;
+    font-size: 0.7vw;
+}
+.set-form-con label {
+    padding: 0.5em 0;
+}
+.set-main .set-form-con input:focus{
+    background-color: var(--font-darkblack);
+    border-color: var(--font-darkgreen);
+    outline: none;
+    box-shadow: none;
+}
+.set-input-con{
+    display: flex;
+    flex-direction: column;
+}
+.set-input-con input,
+.set-input-con select{
+    padding: 1em;
+    margin: 0.5em;
+
+    font-family: var(--main-font);
+    font-size: 0.8em;
+    color: var(--font-white);
+    
+    background-color: var(--font-black);
+    border: 0;
+    border-bottom: 0.1em solid var(--font-white);
+
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.set-input-con label,
+.set-input-con span{
+    padding: 0.5em 0;
+    font-size: 0.9em;
+}
+.set-name-div{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.set-form-con form > .set-input-con{
+    display: flex;
+    width: 100%;
+}
+.set-name-div span, .set-err{
+    color: red;
+}
+
+.set-btn{
+    padding: 1em 2em;
+    border-radius: 9999px;
+    background-color: var(--font-white);
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    font-size: 0.7em;
+    font-family: var(--main-font);
+
+}
+.set-btn:hover{
+    background-color: var(--font-lightgreen);
+}
+.set-max-btn{
+    padding: 1em 4em !important;
+    margin:  0 0 2em 0;
+}
+.set-max-btn:hover{
+    background-color: var(--font-darkgrey);
+}
+
+.set-max-btn-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.set-form-con form > div:last-child {
+    display: flex;
+    justify-content: center;
+}
+.set-form-con form button {
+    padding: 1em 3em;
+}
+
+.remove-btn:hover{
+    background-color: red;
+    color: white;
+}
+.set-entries-div{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5em;
+  width: 100%;
+}
+.entries-card{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    padding: 1em;
+    border-radius: 0.75em;
+    background-color: var(--font-darkblack);
+}
+.set-submsg{
+    font-size: 1em !important;
+    color: var(--font-lightgreen);
+}
