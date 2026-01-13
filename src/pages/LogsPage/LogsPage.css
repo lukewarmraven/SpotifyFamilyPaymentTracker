@@ -1,0 +1,85 @@
+.logs-main{
+    color: var(--font-white);
+    font-family: var(--main-font);
+    font-size: var(--main-size);
+    font-weight: 200;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+.logs-title{
+    font-size: 2vw;
+    padding: 1em;
+}
+.logs-form-con form div{
+    display: flex;
+    width: 100%;
+}
+.logs-form-con form{
+    display: flex;
+    flex-direction: column;
+
+    gap: 1em;
+}
+.logs-form-con form{
+    width: 30vw;
+}
+.logs-form-con form > div:last-child {
+    display: flex;
+    justify-content: center;
+    /* width: 100% is optional since divs are block by default */
+}
+
+.logs-input-con{
+    display: flex;
+    flex-direction: column;
+}
+.logs-input-con input,
+.logs-input-con select{
+    padding: 1em;
+
+    font-family: var(--main-font);
+    font-size: 0.8em;
+    color: var(--font-white);
+    
+    background-color: var(--font-black);
+    border: 0;
+    border-bottom: 0.1em solid var(--font-white);
+
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.logs-input-con label,
+.logs-input-con span{
+    padding: 0.5em 0;
+    font-size: 0.8vw;
+}
+.logs-name-div{
+    gap: 1em;
+}
+
+.logs-btn{
+    padding: 0.5em 1em;
+    border-radius: 9999px;
+    background-color: var(--font-white);
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 1em 3em;
+
+    font-size: 1em;
+}
+.logs-btn:hover{
+    background-color: var(--font-lightgreen);
+}
+
+.logs-err{
+    color: red;
+
+}

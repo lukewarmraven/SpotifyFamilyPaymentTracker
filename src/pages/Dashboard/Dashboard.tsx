@@ -57,7 +57,7 @@ function Dashboard() {
   }
   return (
     <div className="dash-main">
-        <div className="dash-title">Dashboard Page</div>
+        {/* <div className="dash-title">Dashboard Page</div> */}
         <div>
           {
             accsetup ? (
@@ -71,9 +71,9 @@ function Dashboard() {
                         </span>
                        's Spotify Family </div>
                       <div className="dash-heading-submsg">
-                        bills ₱{parseFloat(accsetup.price).toFixed(2)} every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
+                        bills <span style={{fontWeight:"600"}}> ₱{parseFloat(accsetup.price).toFixed(2)} </span> every <span style={{fontWeight:"600"}}>{formatOrdinal(new Date(accsetup.billing_date).getDate())} </span> of the month {accsetup?.members?.length > 0 && (
                           <span>
-                            (₱{Math.round(accsetup.price / accsetup?.members?.length)} per member as of {formatDate(new Date(accsetup.price_changedate))})
+                            (<span style={{fontWeight:"600"}}>₱{Math.round(accsetup.price / accsetup?.members?.length)} </span> per member as of <span style={{fontWeight:"600"}}>{formatDate(new Date(accsetup.price_changedate))}</span>)
                           </span>
                           )}  
                         <div>Note: Price per member is rounded up.</div>                       

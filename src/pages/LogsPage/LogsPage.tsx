@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { fetchAccountData } from "../../contexts/fetchData"
 import { useUser } from "../../contexts/useUser"
 import { formatName } from "../../contexts/useFormat"
 import { supabase } from "../../client/supabaseClient"
 import { useNavigate } from "react-router-dom"
+import "./LogsPage.css"
 
 function Logs() {
     const [accsetup,setAccsetup] = useState<any>([])
@@ -21,7 +22,9 @@ function Logs() {
         other:""
     })
     const navigate = useNavigate()
-    
+    const paymentDateRef = useRef<HTMLInputElement>(null)
+    const paidUntilRef = useRef<HTMLInputElement>(null)
+
     useEffect(()=>{
         document.title = "Logs"
 
@@ -80,12 +83,17 @@ function Logs() {
     }
 
     return (
-        <div>
-            <div>Log your Spotify Family Plan Payments here...</div>
-            <div>
+        <div className="logs-main">
+            <div className="logs-title">Log your Spotify Family Plan Payments here...</div>
+            <div className="logs-form-con">
                 <form action={handleSubmit}>
-                    <div>
-                        <label htmlFor="member">Member: </label>
+                    <div className="logs-input-con">
+                        <div className="logs-name-div">
+                            <label htmlFor="member">Member: </label>
+                            <span className="logs-err">
+                                {error.mem && (error.mem)}
+                            </span>
+                        </div>
                         <select value={mem} name="member" id="member" onChange={(e)=>(
                             setMem(e.target.value)
                         )}>
@@ -98,38 +106,49 @@ function Logs() {
                                 ))
                             }
                         </select>
-                        {error.mem && (error.mem)}
+                        
                     </div>
 
-                    <div>
-                        <label htmlFor="paymentDate">Payment Date: </label>
-                        <input value={paymentDate} onChange={(e)=> (
+                    <div className="logs-input-con">
+                        <div className="logs-name-div">
+                            <label htmlFor="paymentDate">Payment Date: </label>
+                            <span className="logs-err">
+                                {error.paymentDate && (error.paymentDate)}
+                            </span>
+                        </div>
+                        <input ref={paymentDateRef} value={paymentDate} onChange={(e)=> (
                             setPaymentdate(e.target.value)
-                        )} type="date" name="paymentDate" id="paymentDate" max={new Date().toISOString().split("T")[0]}/>
-                        {error.paymentDate && (error.paymentDate)}
+                        )} onFocus={()=>paymentDateRef.current?.showPicker?.()} type="date" name="paymentDate" id="paymentDate" max={new Date().toISOString().split("T")[0]}/>
                     </div>
-                    <div>
-                        <label htmlFor="paiduntil">Paid Until: </label>
-                        <input value={paidUntil} onChange={(e)=> (
+                    <div className="logs-input-con">
+                        <div className="logs-name-div">
+                            <label htmlFor="paiduntil">Paid Until: </label>
+                            <span className="logs-err">
+                                {error.paidUntil && (error.paidUntil)}
+                            </span>
+                        </div>
+                        <input ref={paidUntilRef} value={paidUntil} onChange={(e)=> (
                             setPaidUntil(e.target.value)
-                        )} type="date" name="paiduntil" id="paiduntil" min={new Date().toISOString().split("T")[0]}/>
-                        {error.paidUntil && (error.paidUntil)}
+                        )} onFocus={()=>paidUntilRef.current?.showPicker?.()} type="date" name="paiduntil" id="paiduntil" min={new Date().toISOString().split("T")[0]}/>
                     </div>
-                    <div>
-                        <label htmlFor="method">Method: </label>
+                    <div className="logs-input-con">
+                        <div className="logs-name-div">
+                            <label htmlFor="method">Method: </label>
+                            <span className="logs-err">
+                                {error.method && (error.method)}
+                            </span>
+                        </div>
                         <select value={method} name="method" id="method" onChange={(e)=>(
                             setMethod(e.target.value)
                         )}>
                             <option value="" hidden>Select here...</option>
                             <option value="GCash" >GCash</option>
                             <option value="Cash" >Cash</option>
-                            
                         </select>
-                        {error.method && (error.method)}
                     </div>
 
                     <div>
-                        <button type="submit">Log!</button>
+                        <button className="logs-btn" type="submit">Log!</button>
                     </div>
                     {error.other && (
                         error.other

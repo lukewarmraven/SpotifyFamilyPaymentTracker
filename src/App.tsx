@@ -9,8 +9,8 @@ import AuthLayer from './contexts/AuthLayer'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Setup from './pages/Setup/Setup'
 import Account from './pages/Account/Account'
-import Logs from './pages/LogsPage/LogsPage'
 import { useEffect } from 'react'
+import Logs from './pages/LogsPage/LogsPage'
 
 function App() {
   useEffect(()=>{

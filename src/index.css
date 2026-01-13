@@ -12,7 +12,7 @@
 
     /* font style here: */
     --main-font: 'Google Sans Flex', 'Arial';
-    --main-size: clamp(12px,1.3vw,30px);
+    --main-size: clamp(12px,0.9vw,30px);
     --font-light: 200
     --font-heavy: 800
 }
@@ -21,5 +21,6 @@ html,body {
     height: 100%;
     margin: 0;
     /* color: #ffffff; */
+    font-size: var(--font-size);
 }
 
