@@ -3,15 +3,18 @@
 :root{
     --font-white: #ffffff;
     --font-lightgreen: #1ed760;
-    --font-darkgreen: #1db954;
+    --font-darkgreen: #1cae4f;
     --font-lightgrey: #b3b3b3;
     --font-darkgrey: #535353;
     --font-black: #191414;
+    --font-lightblack: #353535;
     --font-darkblack: #202020;
 
     /* font style here: */
     --main-font: 'Google Sans Flex', 'Arial';
     --main-size: clamp(12px,1.3vw,30px);
+    --font-light: 200
+    --font-heavy: 800
 }
 html,body {
     background-color: var(--font-black);

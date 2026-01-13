@@ -74,6 +74,7 @@
 }
 
 .login-main form button {
+    font-family: var(--main-font);
     padding: 1em 2em;
 
     background: none;

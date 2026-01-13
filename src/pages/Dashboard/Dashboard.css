@@ -2,4 +2,105 @@
     color: var(--font-white);
     font-family: var(--main-font);
     font-weight: 200;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.dash-title {
+    font-weight: 800;
+}
+.inner-dash-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.inner-dash-title{
+    font-weight: 800;
+}
+
+.general-btn {
+    font-family: var(--main-font);
+    padding: 1em 2em;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: var(--font-white);
+}
+.general-btn:hover {
+    background-color: var(--font-lightgrey);
+}
+
+.members-con{
+    display: flex;
+    flex-direction:  row;
+    flex-wrap: wrap;
+    row-gap: 2em;
+    gap: 1.2em;
+    margin: 1em;
+}
+.family-members-con{
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.2em;
+    width: calc((100% - 40px) / 3);
+    box-sizing: border-box;
+}
+.dash-table{
+    margin: 4em;
+}
+.dash-table th,
+.dash-table td {
+  padding: 12px 16px;        /* space inside each cell */
+  background-color: var(--font-lightblack); /* dark gray for visibility */
+  border-radius: 8px;        /* round the cells */
+}
+.dash-table th {
+  background-color: var(--font-darkgrey);    /* different color for header */
+  font-weight: 600;
+}
+.dash-table tbody tr:hover td {
+  background-color: var(--font-darkgreen);    /* highlight row on hover */
+  transition: background 0.2s ease;
+}
+.dash-table .empty-th{
+    background-color: transparent;
+}
+
+.general-btn {
+  padding: 0.5em 1em;
+  border-radius: 9999px;
+  background-color: var(--font-white);
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+.general-btn:hover {
+  background-color: var(--font-lightgreen);
+}
+.edit-family-btn{
+    margin: 3em 0 0 0;
+    padding: 2em 3em;
+}
+.dash-owner-name{
+    font-weight: 800;
+}
+
+.dash-heading-msg{
+    padding: 4em;
+}
+.dash-heading-submsg{
+    font-size: 0.8em;
+}
+.dash-heading-title{
+    font-size: 4em;
+    padding: 1em;
+}
+.dash-owner-name:hover{
+    color: var(--font-lightgreen);
 }

@@ -57,43 +57,49 @@ function Dashboard() {
   }
   return (
     <div className="dash-main">
-        <div className="dash-text">Dashboard Page</div>
+        <div className="dash-title">Dashboard Page</div>
         <div>
           {
             accsetup ? (
               <div>
                 {
                   <div>
-                    <br />
-                    <div>{accsetup.owner}'s Spotify Family </div>
-                    <div>
-                      bills ₱{parseFloat(accsetup.price).toFixed(2)} every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
-                        <span>
-                          (₱{Math.round(accsetup.price / accsetup?.members?.length)} per member as of {formatDate(new Date(accsetup.price_changedate))})
+                    <div className="dash-heading-msg">
+                      <div className="dash-heading-title">
+                        <span className="dash-owner-name">
+                          {accsetup.owner}
                         </span>
-                        )}  
-                      <div>Note: Price per member is rounded up.</div>                       
-
-                    </div>
-                    <div>
-                      <button type="button" onClick={handleNext}>{accsetup?.members?.length > 0 ? "Edit": "Add"} Family Information</button>
+                       's Spotify Family </div>
+                      <div className="dash-heading-submsg">
+                        bills <b>₱{parseFloat(accsetup.price).toFixed(2)}</b> every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
+                          <span>
+                            (₱{Math.round(accsetup.price / accsetup?.members?.length)} per member as of {formatDate(new Date(accsetup.price_changedate))})
+                          </span>
+                          )}  
+                        <div>Note: Price per member is rounded up.</div>                       
+                      </div>
                     </div>
                     <div> <br />
                     
                     {accsetup.members?.length > 0 && (
-                      <div>
-                        <br />
-                        Family Members:
-                        {accsetup.members.map((v: any, ix: number) => (
-                          <div key={ix}>
-                            <br />
-                            <div>Name: {formatName(v.name)}</div>
-                            <div>Last Payment: {formatDate(v.lastPaid)}</div>
-                            <br />
-                          </div>
-                        ))}
+                      <div className="inner-dash-con">
+                        <div className="inner-dash-title">
+                          Family Members
+                        </div>
+                        <div className="members-con">  
+                          {accsetup.members.map((v: any, ix: number) => (
+                            <div className="family-members-con" key={ix}>
+                              <div>Name: {formatName(v.name)}</div>
+                              <div>Last Payment: {formatDate(v.lastPaid)}</div>
+                            </div>
+                          ))}
+                        </div>
 
-                        <table>
+                        <div>
+                          <button className="general-btn edit-family-btn" type="button" onClick={handleNext}>{accsetup?.members?.length > 0 ? "Edit": "Add"} Family Information</button>
+                        </div>
+
+                        <table className="dash-table">
                           <thead>
                             <tr>
                               <th>Member</th>
@@ -102,7 +108,7 @@ function Dashboard() {
                               <th>Paid Until</th>
                               <th>Months Paid</th>
                               <th>Method</th>
-                              <th></th>
+                              <th className="empty-th"></th>
                             </tr>
                           </thead>
 
@@ -117,7 +123,7 @@ function Dashboard() {
                                   <td>{getMonthDiff(new Date(v.paymentDate),new Date(v.paid_until))}</td>
                                   <td>{v.method}</td>
                                   <td>
-                                    <button type="button" onClick={() => deleteLog(v.id)}>Delete</button>
+                                    <button className="general-btn" type="button" onClick={() => deleteLog(v.id)}>Delete</button>
                                   </td>
                                 </tr>
                               ))
