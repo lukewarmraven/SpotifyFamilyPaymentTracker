@@ -71,7 +71,7 @@ function Dashboard() {
                         </span>
                        's Spotify Family </div>
                       <div className="dash-heading-submsg">
-                        bills <b>₱{parseFloat(accsetup.price).toFixed(2)}</b> every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
+                        bills ₱{parseFloat(accsetup.price).toFixed(2)} every {formatOrdinal(new Date(accsetup.billing_date).getDate())} of the month {accsetup?.members?.length > 0 && (
                           <span>
                             (₱{Math.round(accsetup.price / accsetup?.members?.length)} per member as of {formatDate(new Date(accsetup.price_changedate))})
                           </span>
