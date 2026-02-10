@@ -37,21 +37,16 @@
 
 .members-con{
     display: flex;
-    flex-direction:  row;
-    flex-wrap: wrap;
-    row-gap: 2em;
-    gap: 1.2em;
-    margin: 1em;
-
-    
+  flex-wrap: wrap;
+  gap: 1.2em;
+  width: 100%;
+  justify-content: center;
 }
 .family-members-con{
-    display: flex;
-    flex-direction: column;
-
-    padding: 0.2em;
-    width: calc((100% - 40px) / 3);
-    box-sizing: border-box;
+    flex: 0 1 calc((100% - 2.4em) / 3); /* max 3 per row */
+  max-width: calc((100% - 2.4em) / 3);
+  min-width: 280px;                  /* grow when fewer */
+  box-sizing: border-box;
 }
 .family-members-con div{
     font-size: 1em;
@@ -112,4 +107,7 @@
 }
 .dash-owner-name:hover{
     color: var(--font-lightgreen);
+}
+.setup-div{
+    margin: 10vw;
 }

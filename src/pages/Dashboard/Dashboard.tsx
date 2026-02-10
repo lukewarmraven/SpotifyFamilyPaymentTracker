@@ -17,7 +17,7 @@ function Dashboard() {
     const fetchAccSetup = async () => {
       const accsetupdata = await fetchAccountData()
       const current = accsetupdata?.find(v=>v.email === user?.email)
-      // console.log(current);
+      console.log(current);
       setAccsetup(current)
       
     }
@@ -53,14 +53,18 @@ function Dashboard() {
   }
 
   const setupAcc = () => {
-    navigate("/setup")
+    navigate("/setup", {
+      state: {
+        activity: "add"
+      }
+    })
   }
   return (
     <div className="dash-main">
         {/* <div className="dash-title">Dashboard Page</div> */}
         <div>
           {
-            accsetup ? (
+            accsetup.members?.length > 0 ? (
               <div>
                 {
                   <div>
@@ -142,7 +146,7 @@ function Dashboard() {
                 }
               </div>
             ) : (
-              <div>
+              <div className="setup-div">
                   <div>Setup your account</div>
                   <button type="button" onClick={setupAcc}>Setup account</button>
               </div>

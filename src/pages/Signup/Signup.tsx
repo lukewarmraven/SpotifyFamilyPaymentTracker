@@ -86,7 +86,7 @@ function Signup() {
           <div className="signup-form-con">
             <div>
               <label className="signup-label" htmlFor="username">Username:</label>
-              <input type="text" id="username" value={owner} onChange={
+              <input placeholder="Enter your username..." type="text" id="username" value={owner} onChange={
                 (e) => (
                   setOwner(e.target.value)
                 )
@@ -98,7 +98,7 @@ function Signup() {
             
             <div>
               <label className="signup-label" htmlFor="email">Email:</label>
-              <input type="email" id="email" value={email} onChange={
+              <input placeholder="Enter your email..." type="email" id="email" value={email} onChange={
                 (e) => (
                   setEmail(e.target.value)
                 )
@@ -110,7 +110,7 @@ function Signup() {
           
             <div>
               <label className="signup-label" htmlFor="password">Password:</label>
-              <input type="password" id="password" value={pass} onChange={
+              <input placeholder="Enter your password..." type="password" id="password" value={pass} onChange={
                 (e) => (
                   setPass(e.target.value)
                 )

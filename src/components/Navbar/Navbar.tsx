@@ -15,7 +15,7 @@ function Navbar(){
     }
     return (
         <div className="main">
-            <Link className="nav-button no-hover" to="/">
+            <Link className="nav-button no-hover" to="/dashboard">
                 <img className="nav-logo" src={spotify} alt="spotify tracker logo" />
             </Link>
         {

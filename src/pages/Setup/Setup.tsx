@@ -79,7 +79,7 @@ function Setup() {
   const handleSubmit = async () => {
     if (!validateEntries()) return
     if(entries.length === 0) {
-      setError(prev=> ({...prev, members: "Add at least one field..."}))
+      setError(prev=> ({...prev, members: "Add at least one family member..."}))
       return
     }
       console.log("Setting up...");
