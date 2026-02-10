@@ -64,7 +64,7 @@ function Dashboard() {
         {/* <div className="dash-title">Dashboard Page</div> */}
         <div>
           {
-            accsetup.members?.length > 0 ? (
+            accsetup?.members?.length > 0 ? (
               <div>
                 {
                   <div>

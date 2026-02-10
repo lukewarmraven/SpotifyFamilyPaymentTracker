@@ -22,11 +22,11 @@ function App() {
       {/* <div>Spotify Family Payment Tracker</div> */}
       <Navbar/>
       <Routes>
-        <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
 
         <Route element={<AuthLayer/>}>
+          <Route path='/' element={<Dashboard/>} />
           <Route path='/setup' element={<Setup/>} />
           <Route path='/logs' element={<Logs/>} />
           <Route path='/dashboard' element={<Dashboard/>} />

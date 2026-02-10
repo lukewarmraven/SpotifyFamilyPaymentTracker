@@ -36,16 +36,14 @@
 }
 
 .members-con{
-    display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* hard max = 3 */
   gap: 1.2em;
   width: 100%;
-  justify-content: center;
+  justify-items: stretch;
 }
 .family-members-con{
-    flex: 0 1 calc((100% - 2.4em) / 3); /* max 3 per row */
-  max-width: calc((100% - 2.4em) / 3);
-  min-width: 280px;                  /* grow when fewer */
+  padding: 0.5em;
   box-sizing: border-box;
 }
 .family-members-con div{
